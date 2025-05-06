@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+<!-- 对app标签进行样式设计 -->
+<style>
+div#app {
+  width: 100%;
+}
+body,
+html {
+  margin: 0;
+}
+</style>
+<!-- 此处需要注意的是对于当前文件中现成的div#app标签而言，在最终进行内容渲染的时候是作为最外层父元素存在的，并且之所以内容并不会被
+内容完全的原因在于其为block类型的元素，并且在element-plus组件库引入使用的时候(发生在main.ts文件中)就已经对当前标签的大小进行限制，并且
+将溢出的内容(也就是主体的内容)进行正常显示，所以才会出现div#app标签存在于众多元素之中的现象 -->
