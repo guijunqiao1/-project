@@ -7,6 +7,7 @@ import Home from "../pages/Home.vue";
 import History from "../pages/History.vue";
 import New from "../pages/Now.vue";
 import Mqtt from "../pages/Control.vue";
+import ex from "../pages/experience.vue";
 
 
 //2、创建路由器
@@ -36,6 +37,9 @@ const router = createRouter({
     {
       path: "/t_Control",
       component: Mqtt
+    }, {
+      path: "/experience",
+      component: ex
     }
   ]
 });

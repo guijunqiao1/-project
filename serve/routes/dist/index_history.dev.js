@@ -409,7 +409,7 @@ Router4.get("/History_count", function _callee3(req, res) {
           _ref22 = _slicedToArray(_ref21, 1);
           _rows9 = _ref22[0];
           // 直接返回数组长度
-          res.send("" + _rows9.length);
+          res.send("" + _rows9[0].total.toString());
 
         case 36:
           _context3.next = 43;

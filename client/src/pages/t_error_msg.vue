@@ -1,5 +1,5 @@
 <template>
-  <div class="content1" v-if="Pinia.device_sign">
+  <div class="content1" v-if="Pinia.Action_sign">
     <!-- 上半部分 -->
     <div class="top_part">
       <!-- 设备名称  -->
@@ -28,7 +28,7 @@
       <table>
         <thead>
           <tr>
-            <th v-show="Pinia.device_sign">设备编号</th>
+            <th v-show="Pinia.action_sign">设备编号</th>
             <th>错误信息</th>
             <th>类型</th>
             <th>出错时间</th>
@@ -37,7 +37,7 @@
         <tbody>
           <!-- 遍历的是设备数组的内容 -->
           <tr v-for="item in device_array" :key="item.id">
-            <td v-show="Pinia.device_sign">{{ item[0] }}</td>
+            <td v-show="Pinia.action_sign">{{ item[0] }}</td>
             <td>{{ item[2] }}</td>
             <td>{{ item[1] }}</td>
             <td>{{ moment(item[3]).format('YYYY-MM-DD HH:mm:ss') }}</td>

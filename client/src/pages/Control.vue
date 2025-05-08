@@ -69,104 +69,104 @@
 
     </div>
 
-    <!-- <div class='local'> -->
+    <!-- <div class='local' v-show="Pinia.device_sign"> -->
     <!-- 只在手动模式开启的时候启动 -->
     <!-- <h1>设备指令</h1> -->
 
     <!-- <div class="device_list control_list">
-      <el-dropdown v-if="device_array_length > 1"> -->
+        <el-dropdown v-if="device_array_length > 1"> -->
     <!-- 当前框只在保底一个的情况下才出现 -->
     <!-- <el-button type="primary">
-          设备控件控制<el-icon class="el-icon--right"><arrow-down /></el-icon>
-        </el-button>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <div class="device_list" v-for="item in device_array" :key="item[0]">
-              <el-dropdown-item>
-                <div style="border-radius: 5px;" @click="change(item[0])">设备{{ item[0] }}的控件控制</div>
-              </el-dropdown-item>
-            </div>
-          </el-dropdown-menu>
-        </template>
+            设备控件控制<el-icon class="el-icon--right"><arrow-down /></el-icon>
+          </el-button>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <div class="device_list" v-for="item in device_array" :key="item[0]">
+                <el-dropdown-item>
+                  <div style="border-radius: 5px;" @click="change(item[0])">设备{{ item[0] }}的控件控制</div>
+                </el-dropdown-item>
+              </div>
+            </el-dropdown-menu>
+          </template>
 </el-dropdown>
 <div class="only" style="border-radius: 5px;background-color: #409eff;" v-if="device_array_length === 1">
   设备{{ signzhi }}的控件控制
 </div>
-</div> -->
+</div>
 
-    <!-- <div class="now_device">
-      当前选中设备为：{{ signzhi }}
-    </div> -->
+<div class="now_device">
+  当前选中设备为：{{ signzhi }}
+</div> -->
 
     <!-- 设备控制台视图 -->
     <!-- <div class="device_control_View">
 
-      <div class="control_model" v-if="control_device_sign">
-        控制模式：
-        <el-switch v-model="control_device_sign" :active-text="control_model1.f_value[1]"
-          :inactive-text="control_model1.f_value[0]" :active-value="control_model1.f_value[1]"
-          :inactive-value="control_model1.f_value[0]" />
-      </div>
+        <div class="control_model" v-if="control_device_sign">
+          控制模式：
+          <el-switch v-model="control_device_sign" :active-text="control_model1.f_value[1]"
+            :inactive-text="control_model1.f_value[0]" :active-value="control_model1.f_value[1]"
+            :inactive-value="control_model1.f_value[0]" />
+        </div>
 
-      <div class="dianji_model" v-if="dianjimodel_device_sign">
-        电机模式：
-        <el-radio-group v-model="dianjimodel_device_sign">
-          <el-radio :disabled="!dianjimodel_bool1" :value="dianji_model1.f_value[0]" size="large">{{
-            dianji_model1.f_value[0]
-          }}</el-radio>
-          <el-radio :disabled="!dianjimodel_bool1" :value="dianji_model1.f_value[1]" size="large">{{
-            dianji_model1.f_value[1]
-          }}</el-radio>
-        </el-radio-group>
-      </div>
+        <div class="dianji_model" v-if="dianjimodel_device_sign">
+          电机模式：
+          <el-radio-group v-model="dianjimodel_device_sign">
+            <el-radio :disabled="!dianjimodel_bool1" :value="dianji_model1.f_value[0]" size="large">{{
+              dianji_model1.f_value[0]
+            }}</el-radio>
+            <el-radio :disabled="!dianjimodel_bool1" :value="dianji_model1.f_value[1]" size="large">{{
+              dianji_model1.f_value[1]
+            }}</el-radio>
+          </el-radio-group>
+        </div>
 
-      <div class="bujindianji" v-if="bujindianji_device_sign">
-        步进电机：
-        <el-switch :disabled="!bujindianji_bool1" v-model="bujindianji_device_sign"
-          :active-text="bujindianji1.f_value[1]" :inactive-text="bujindianji1.f_value[0]"
-          :active-value="bujindianji1.f_value[1]" :inactive-value="bujindianji1.f_value[0]" />
-      </div>
+        <div class="bujindianji" v-if="bujindianji_device_sign">
+          步进电机：
+          <el-switch :disabled="!bujindianji_bool1" v-model="bujindianji_device_sign"
+            :active-text="bujindianji1.f_value[1]" :inactive-text="bujindianji1.f_value[0]"
+            :active-value="bujindianji1.f_value[1]" :inactive-value="bujindianji1.f_value[0]" />
+        </div>
 
-      <div class="ketiaodeng" v-if="ketiaodeng_device_sign">
-        可调灯：
-        <el-switch :disabled="!ketiaodeng_bool1" v-model="ketiaodeng_device_sign" :active-text="ketiaodeng1.f_value[1]"
-          :inactive-text="ketiaodeng1.f_value[0]" :active-value="ketiaodeng1.f_value[1]"
-          :inactive-value="ketiaodeng1.f_value[0]" />
-      </div>
+        <div class="ketiaodeng" v-if="ketiaodeng_device_sign">
+          可调灯：
+          <el-switch :disabled="!ketiaodeng_bool1" v-model="ketiaodeng_device_sign"
+            :active-text="ketiaodeng1.f_value[1]" :inactive-text="ketiaodeng1.f_value[0]"
+            :active-value="ketiaodeng1.f_value[1]" :inactive-value="ketiaodeng1.f_value[0]" />
+        </div>
 
-      <div class="fengshan1" v-if="fengshan1_device_sign">
-        风扇1：
-        <el-switch :disabled="!fengshan1_bool1" v-model="fengshan1_device_sign" :active-text="fengshan11.f_value[1]"
-          :inactive-text="fengshan11.f_value[0]" :active-value="fengshan11.f_value[1]"
-          :inactive-value="fengshan11.f_value[0]" />
-      </div>
+        <div class="fengshan1" v-if="fengshan1_device_sign">
+          风扇1：
+          <el-switch :disabled="!fengshan1_bool1" v-model="fengshan1_device_sign" :active-text="fengshan11.f_value[1]"
+            :inactive-text="fengshan11.f_value[0]" :active-value="fengshan11.f_value[1]"
+            :inactive-value="fengshan11.f_value[0]" />
+        </div>
 
-      <div class="fengshan2" v-if="fengshan2_device_sign">
-        风扇2：
-        <el-switch :disabled="!fengshan2_bool1" v-model="fengshan2_device_sign" :active-text="fengshan21.f_value[1]"
-          :inactive-text="fengshan21.f_value[0]" :active-value="fengshan21.f_value[1]"
-          :inactive-value="fengshan21.f_value[0]" />
-      </div>
+        <div class="fengshan2" v-if="fengshan2_device_sign">
+          风扇2：
+          <el-switch :disabled="!fengshan2_bool1" v-model="fengshan2_device_sign" :active-text="fengshan21.f_value[1]"
+            :inactive-text="fengshan21.f_value[0]" :active-value="fengshan21.f_value[1]"
+            :inactive-value="fengshan21.f_value[0]" />
+        </div>
 
-      <div class="temperature1">
-        温度阈值1：
-        <input type="text" v-model="temperature_threshold1_device_sign" :disabled="!temperature_threshold1_bool1">
-        <button class="input_submit" @click="submit(11)">提交</button>
-      </div>
+        <div class="temperature1">
+          温度阈值1：
+          <input type="text" v-model="temperature_threshold1_device_sign" :disabled="!temperature_threshold1_bool1">
+          <button class="input_submit" @click="submit(11)">提交</button>
+        </div>
 
-      <div class="temperature2">
-        温度阈值2：
-        <input type="text" v-model="temperature_threshold2_device_sign" :disabled="!temperature_threshold2_bool1">
-        <button class="input_submit" @click="submit(22)">提交</button>
-      </div>
+        <div class="temperature2">
+          温度阈值2：
+          <input type="text" v-model="temperature_threshold2_device_sign" :disabled="!temperature_threshold2_bool1">
+          <button class="input_submit" @click="submit(22)">提交</button>
+        </div>
 
-      <div class="light_min">
-        最低光照：
-        <input type="text" v-model="light_min_device_sign" :disabled="!light_min_bool1">
-        <button class="input_submit" @click="submit(33)">提交</button>
-      </div>
-    </div>
-  </div> -->
+        <div class="light_min">
+          最低光照：
+          <input type="text" v-model="light_min_device_sign" :disabled="!light_min_bool1">
+          <button class="input_submit" @click="submit(33)">提交</button>
+        </div>
+      </div> -->
+    <!-- </div> -->
   </div>
 
 
@@ -175,7 +175,9 @@
 <script setup lang="ts">
 import { ref, onMounted, nextTick, onUnmounted } from "vue";
 import axios from "axios";
-// import { ArrowDown } from '@element-plus/icons-vue'
+import { useUserStore } from "../store/curt";
+const Pinia = useUserStore();
+import { ArrowDown } from '@element-plus/icons-vue'
 
 // 数据
 const control_model = ref();
@@ -300,6 +302,8 @@ let fengshan2_click: any = (value) => { };
 
 
 
+
+
 submit = async (value) => {
   // 将输入框内容进行请求提交
   if (value === 1) {
@@ -340,7 +344,7 @@ submit = async (value) => {
     else {
       alert(`输入内容不满足在${l_min_min}到${l_min_max}取值的条件`);
     }
-    alert("修改光照阈值为" + light_min_sign .value+ "成功");
+    alert("修改光照阈值为" + light_min_sign.value + "成功");
   }
   // else if (value === 11) {
   //   if (Number(temperature_threshold1_device_sign.value) && Number(temperature_threshold1_device_sign.value) >= Number(t1_device_min) && Number(temperature_threshold1_device_sign.value) <= Number(t1_device_max)) {
@@ -404,8 +408,8 @@ submit = async (value) => {
 
 // 全局控件的改变：-------------------------------------------------------------------------------------------------------------------
 control_click = async (value) => {
-  if (control_sign.value === control_model.value.f_value[1].split(":")[0]) {
-    const result = await axios.get(`/api/zhiling/control?content=${control_model.value.f_value[1].split(":")[1]}&topic=${control_model.value.topic.split("|")[1]}&d_no=null`);
+  if (control_sign.value === control_model.value.f_value.split("|")[1].split(":")[0]) {
+    const result = await axios.get(`/api/zhiling/control?content=${control_sign.value}&topic=${control_model.value.topic.split("|")[1]}&d_no=null`);
     console.log("主动控制了自动模式下的定时器的开启");
     //将伴随着的control_sign进行修改
     // 发送请求直接修改t_direct中的内容--由于自动手动仅由服务端控制故不需要和底层设备进行握手
@@ -417,8 +421,8 @@ control_click = async (value) => {
     fengshan2_bool.value = true;
   }
 
-  else if (control_sign.value === control_model.value.f_value[0].split(":")[0]) {
-    const result = await axios.get(`/api/zhiling/control?content=${control_model.value.f_value[0].split(":")[1]}&topic=${control_model.value.topic.split("|")[0]}&d_no=null`);
+  else if (control_sign.value === control_model.value.f_value.split("|")[0].split(":")[0]) {
+    const result = await axios.get(`/api/zhiling/control?content=${control_sign.value}&topic=${control_model.value.topic.split("|")[0]}&d_no=null`);
     // 发送请求直接修改t_direct中的内容--由于自动手动仅由服务端控制故不需要和底层设备进行握手
     //禁用其他控件--将空间相关的响应式变量置为空
     dianjimodel_bool.value = false;
@@ -445,24 +449,24 @@ control_click = async (value) => {
     //全局实时变量
     const result = await axios.get("/api/direct?d_no=null");
     really_all.value = result.data;
-    const result6 = await axios.get("/api/direct/temperature1?mode=1");
+    const result6 = await axios.get("/api/zhiling/temperature1?mode=1");
     t1_min = result6.data.min;
     t1_max = result6.data.max;
-    const result7 = await axios.get("/api/direct/temperature2?mode=1");
+    const result7 = await axios.get("/api/zhiling/temperature2?mode=1");
     t2_min = result7.data.min;
     t2_max = result7.data.max;
-    const result8 = await axios.get("/api/direct/light_min?mode=1");
+    const result8 = await axios.get("/api/zhiling/light_min?mode=1");
     l_min_min = result8.data.min;
     l_min_max = result8.data.max;
 
     // 局部实时变量 
-    // const result60 = await axios.get("/api/direct/temperature1?mode=0");
+    // const result60 = await axios.get("/api/zhiling/temperature1?mode=0");
     // t1_device_min = result60.data.min;
     // t1_device_max = result60.data.max;
-    // const result70 = await axios.get("/api/direct/temperature2?mode=0");
+    // const result70 = await axios.get("/api/zhiling/temperature2?mode=0");
     // t2_device_min = result70.data.min;
     // t2_device_max = result70.data.max;
-    // const result80 = await axios.get("/api/direct/light_min?mode=0");
+    // const result80 = await axios.get("/api/zhiling/light_min?mode=0");
     // l_min_device_min = result80.data.min;
     // l_min_device_max = result80.data.max;
 
@@ -503,12 +507,7 @@ control_click = async (value) => {
 }
 dianji_model_click = async (value) => {
   if (dianji_model.value) {
-    if (dianjimodel_sign.value === dianji_model.value.f_value[0].split(":")[0]) {
-      const result = await axios.get(`/api/zhiling/dianji_model?content=${dianji_model.value.f_value[0].split(":")[1]}&topic=${dianji_model.value.topic}&d_no=null`);
-    }
-    else if (dianjimodel_sign.value === dianji_model.value.f_value[1].split(":")[0]) {
-      const result = await axios.get(`/api/zhiling/dianji_model?content=${dianji_model.value.f_value[1].split(":")[1]}&topic=${dianji_model.value.topic}&d_no=null`);
-    }
+    const result = await axios.get(`/api/zhiling/dianji_model?content=${dianjimodel_sign.value}&topic=${dianji_model.value.topic}&d_no=null`);
     //遍历所有设备
     // for (let i = 0; i < device_array.value.length; i++) {
     //   if (dianjimodel_sign.value === "正转") {
@@ -527,24 +526,24 @@ dianji_model_click = async (value) => {
       //全局实时变量
       const result = await axios.get("/api/direct?d_no=null");
       really_all.value = result.data;
-      const result6 = await axios.get("/api/direct/temperature1?mode=1");
+      const result6 = await axios.get("/api/zhiling/temperature1?mode=1");
       t1_min = result6.data.min;
       t1_max = result6.data.max;
-      const result7 = await axios.get("/api/direct/temperature2?mode=1");
+      const result7 = await axios.get("/api/zhiling/temperature2?mode=1");
       t2_min = result7.data.min;
       t2_max = result7.data.max;
-      const result8 = await axios.get("/api/direct/light_min?mode=1");
+      const result8 = await axios.get("/api/zhiling/light_min?mode=1");
       l_min_min = result8.data.min;
       l_min_max = result8.data.max;
 
       // 局部实时变量 
-      // const result60 = await axios.get("/api/direct/temperature1?mode=0");
+      // const result60 = await axios.get("/api/zhiling/temperature1?mode=0");
       // t1_device_min = result60.data.min;
       // t1_device_max = result60.data.max;
-      // const result70 = await axios.get("/api/direct/temperature2?mode=0");
+      // const result70 = await axios.get("/api/zhiling/temperature2?mode=0");
       // t2_device_min = result70.data.min;
       // t2_device_max = result70.data.max;
-      // const result80 = await axios.get("/api/direct/light_min?mode=0");
+      // const result80 = await axios.get("/api/zhiling/light_min?mode=0");
       // l_min_device_min = result80.data.min;
       // l_min_device_max = result80.data.max;
 
@@ -585,12 +584,7 @@ dianji_model_click = async (value) => {
 }
 bujindianji_click = async (value) => {
   if (bujindianji.value) {
-    if (bujindianji_sign.value === bujindianji.value.f_value[1].split(":")[0]) {
-      const result = await axios.get(`/api/zhiling/bujindianji?content=${bujindianji.value.header.split("|")[0]}&topic=${bujindianji.value.topic}&d_no=null&dianji_model=${dianjimodel_sign.value}`);
-    }
-    else if (bujindianji_sign.value === bujindianji.value.f_value[0].split(":")[0]) {
-      const result = await axios.get(`/api/zhiling/bujindianji?content=${bujindianji.value.header.split("|")[1]}&topic=${bujindianji.value.topic}&d_no=null`);
-    }
+    const result = await axios.get(`/api/zhiling/bujindianji?content=${bujindianji_sign.value}&topic=${bujindianji.value.topic}&d_no=null`);
     // for (let i = 0; i < device_array.value.length; i++) {
     //   if (bujindianji_sign.value === "开") {
     //     const result = await axios.get(`/api/zhiling/bujindianji?content=start&topic=${bujindianji1.value.topic}&d_no=${device_array.value[i][0]}`);
@@ -608,24 +602,24 @@ bujindianji_click = async (value) => {
       //全局实时变量
       const result = await axios.get("/api/direct?d_no=null");
       really_all.value = result.data;
-      const result6 = await axios.get("/api/direct/temperature1?mode=1");
+      const result6 = await axios.get("/api/zhiling/temperature1?mode=1");
       t1_min = result6.data.min;
       t1_max = result6.data.max;
-      const result7 = await axios.get("/api/direct/temperature2?mode=1");
+      const result7 = await axios.get("/api/zhiling/temperature2?mode=1");
       t2_min = result7.data.min;
       t2_max = result7.data.max;
-      const result8 = await axios.get("/api/direct/light_min?mode=1");
+      const result8 = await axios.get("/api/zhiling/light_min?mode=1");
       l_min_min = result8.data.min;
       l_min_max = result8.data.max;
 
       // 局部实时变量 
-      // const result60 = await axios.get("/api/direct/temperature1?mode=0");
+      // const result60 = await axios.get("/api/zhiling/temperature1?mode=0");
       // t1_device_min = result60.data.min;
       // t1_device_max = result60.data.max;
-      // const result70 = await axios.get("/api/direct/temperature2?mode=0");
+      // const result70 = await axios.get("/api/zhiling/temperature2?mode=0");
       // t2_device_min = result70.data.min;
       // t2_device_max = result70.data.max;
-      // const result80 = await axios.get("/api/direct/light_min?mode=0");
+      // const result80 = await axios.get("/api/zhiling/light_min?mode=0");
       // l_min_device_min = result80.data.min;
       // l_min_device_max = result80.data.max;
 
@@ -666,21 +660,7 @@ bujindianji_click = async (value) => {
 }
 ketiaodeng_click = async (value) => {
   if (ketiaodeng.value) {
-    if (ketiaodeng_sign.value === ketiaodeng.value.f_value[1].split(":")[0]) {
-      const result = await axios.get(`/api/zhiling/ketiaodeng?content=${ketiaodeng.value.header.split("|")[0]}&topic=${ketiaodeng.value.topic}&d_no=null`);
-    }
-    else if (ketiaodeng_sign.value === ketiaodeng.value.f_value[0]) {
-      const result = await axios.get(`/api/zhiling/ketiaodeng?content=${ketiaodeng.value.header.split("|")[1]}&topic=${ketiaodeng.value.topic}&d_no=null`);
-    }
-    // for (let i = 0; i < device_array.value.length; i++) {
-    //   if (ketiaodeng_sign.value === "开") {
-    //     const result = await axios.get(`/api/zhiling/ketiaodeng?content=start&topic=${ketiaodeng1.value.topic}&d_no=${device_array.value[i][0]}`);
-    //   }
-    //   else if (ketiaodeng_sign.value === "关") {
-    //     const result = await axios.get(`/api/zhiling/ketiaodeng?content=stop&topic=${ketiaodeng1.value.topic}&d_no=${device_array.value[i][0]}`);
-    //   }
-    // }
-
+    const result = await axios.get(`/api/zhiling/ketiaodeng?content=${ketiaodeng_sign.value}&topic=${ketiaodeng.value.topic}&d_no=null`);
     //当前定时器归零
     clearInterval(setInterval1);
     //重新赋值
@@ -689,24 +669,24 @@ ketiaodeng_click = async (value) => {
       //全局实时变量
       const result = await axios.get("/api/direct?d_no=null");
       really_all.value = result.data;
-      const result6 = await axios.get("/api/direct/temperature1?mode=1");
+      const result6 = await axios.get("/api/zhiling/temperature1?mode=1");
       t1_min = result6.data.min;
       t1_max = result6.data.max;
-      const result7 = await axios.get("/api/direct/temperature2?mode=1");
+      const result7 = await axios.get("/api/zhiling/temperature2?mode=1");
       t2_min = result7.data.min;
       t2_max = result7.data.max;
-      const result8 = await axios.get("/api/direct/light_min?mode=1");
+      const result8 = await axios.get("/api/zhiling/light_min?mode=1");
       l_min_min = result8.data.min;
       l_min_max = result8.data.max;
 
       // 局部实时变量 
-      // const result60 = await axios.get("/api/direct/temperature1?mode=0");
+      // const result60 = await axios.get("/api/zhiling/temperature1?mode=0");
       // t1_device_min = result60.data.min;
       // t1_device_max = result60.data.max;
-      // const result70 = await axios.get("/api/direct/temperature2?mode=0");
+      // const result70 = await axios.get("/api/zhiling/temperature2?mode=0");
       // t2_device_min = result70.data.min;
       // t2_device_max = result70.data.max;
-      // const result80 = await axios.get("/api/direct/light_min?mode=0");
+      // const result80 = await axios.get("/api/zhiling/light_min?mode=0");
       // l_min_device_min = result80.data.min;
       // l_min_device_max = result80.data.max;
 
@@ -747,12 +727,7 @@ ketiaodeng_click = async (value) => {
 }
 fengshan1_click = async (value) => {
   if (fengshan1.value) {
-    if (fengshan1_sign.value === fengshan1.value.f_value[1].split(":")[0]) {
-      const result = await axios.get(`/api/zhiling/fengshan1?content=${fengshan1.value.header.split("|")[0]}&topic=${fengshan1.value.topic}&d_no=null`);
-    }
-    else if (fengshan1_sign.value === fengshan1.value.f_value[0]) {
-      const result = await axios.get(`/api/zhiling/fengshan1?content=${fengshan1.value.header.split("|")[1]}&topic=${fengshan1.value.topic}&d_no=null`);
-    }
+    const result = await axios.get(`/api/zhiling/fengshan1?content=${fengshan1_sign.value}&topic=${fengshan1.value.topic}&d_no=null`);
     // for (let i = 0; i < device_array.value.length; i++) {
     //   if (fengshan1_sign.value === "开") {
     //     const result = await axios.get(`/api/zhiling/fengshan1?content=start&topic=${fengshan11.value.topic}&d_no=${device_array.value[i][0]}`);
@@ -770,24 +745,24 @@ fengshan1_click = async (value) => {
       //全局实时变量
       const result = await axios.get("/api/direct?d_no=null");
       really_all.value = result.data;
-      const result6 = await axios.get("/api/direct/temperature1?mode=1");
+      const result6 = await axios.get("/api/zhiling/temperature1?mode=1");
       t1_min = result6.data.min;
       t1_max = result6.data.max;
-      const result7 = await axios.get("/api/direct/temperature2?mode=1");
+      const result7 = await axios.get("/api/zhiling/temperature2?mode=1");
       t2_min = result7.data.min;
       t2_max = result7.data.max;
-      const result8 = await axios.get("/api/direct/light_min?mode=1");
+      const result8 = await axios.get("/api/zhiling/light_min?mode=1");
       l_min_min = result8.data.min;
       l_min_max = result8.data.max;
 
       // 局部实时变量 
-      // const result60 = await axios.get("/api/direct/temperature1?mode=0");
+      // const result60 = await axios.get("/api/zhiling/temperature1?mode=0");
       // t1_device_min = result60.data.min;
       // t1_device_max = result60.data.max;
-      // const result70 = await axios.get("/api/direct/temperature2?mode=0");
+      // const result70 = await axios.get("/api/zhiling/temperature2?mode=0");
       // t2_device_min = result70.data.min;
       // t2_device_max = result70.data.max;
-      // const result80 = await axios.get("/api/direct/light_min?mode=0");
+      // const result80 = await axios.get("/api/zhiling/light_min?mode=0");
       // l_min_device_min = result80.data.min;
       // l_min_device_max = result80.data.max;
 
@@ -828,12 +803,7 @@ fengshan1_click = async (value) => {
 }
 fengshan2_click = async (value) => {
   if (fengshan2.value) {
-    if (fengshan2_sign.value === fengshan2.value.f_value[1].split(":")[0]) {
-      const result = await axios.get(`/api/zhiling/fengshan2?content=${fengshan2.value.header.split("|")[0]}&topic=${fengshan2.value.topic}&d_no=null`);
-    }
-    else if (fengshan2_sign.value === fengshan2.value.f_value[0]) {
-      const result = await axios.get(`/api/zhiling/fengshan2?content=${fengshan1.value.header.split("|")[1]}&topic=${fengshan2.value.topic}&d_no=null`);
-    }
+    const result = await axios.get(`/api/zhiling/fengshan2?content=${fengshan2_sign.value}&topic=${fengshan2.value.topic}&d_no=null`);
     // for (let i = 0; i < device_array.value.length; i++) {
     //   if (fengshan2_sign.value === "开") {
     //     const result = await axios.get(`/api/zhiling/fengshan2?content=start&topic=${fengshan21.value.topic}&d_no=${device_array.value[i][0]}`);
@@ -853,24 +823,24 @@ fengshan2_click = async (value) => {
       //全局实时变量
       const result = await axios.get("/api/direct?d_no=null");
       really_all.value = result.data;
-      const result6 = await axios.get("/api/direct/temperature1?mode=1");
+      const result6 = await axios.get("/api/zhiling/temperature1?mode=1");
       t1_min = result6.data.min;
       t1_max = result6.data.max;
-      const result7 = await axios.get("/api/direct/temperature2?mode=1");
+      const result7 = await axios.get("/api/zhiling/temperature2?mode=1");
       t2_min = result7.data.min;
       t2_max = result7.data.max;
-      const result8 = await axios.get("/api/direct/light_min?mode=1");
+      const result8 = await axios.get("/api/zhiling/light_min?mode=1");
       l_min_min = result8.data.min;
       l_min_max = result8.data.max;
 
       // 局部实时变量 
-      // const result60 = await axios.get("/api/direct/temperature1?mode=0");
+      // const result60 = await axios.get("/api/zhiling/temperature1?mode=0");
       // t1_device_min = result60.data.min;
       // t1_device_max = result60.data.max;
-      // const result70 = await axios.get("/api/direct/temperature2?mode=0");
+      // const result70 = await axios.get("/api/zhiling/temperature2?mode=0");
       // t2_device_min = result70.data.min;
       // t2_device_max = result70.data.max;
-      // const result80 = await axios.get("/api/direct/light_min?mode=0");
+      // const result80 = await axios.get("/api/zhiling/light_min?mode=0");
       // l_min_device_min = result80.data.min;
       // l_min_device_max = result80.data.max;
 
@@ -1017,27 +987,27 @@ onMounted(async () => {
   const result = await axios.get("/api/direct?d_no=null");
   really_all.value = result.data;
   // 局部实时变量 
-  const result0 = await axios.get("/api/direct/control?mode=1");
+  const result0 = await axios.get("/api/zhiling/control?mode=1");
   control_model.value = result0.data;
-  const result1 = await axios.get("/api/direct/dianji_model?mode=1");
+  const result1 = await axios.get("/api/zhiling/dianji_model?mode=1");
   dianji_model.value = result1.data;
-  const result2 = await axios.get("/api/direct/bujindianji?mode=1");
+  const result2 = await axios.get("/api/zhiling/bujindianji?mode=1");
   bujindianji.value = result2.data;
-  const result3 = await axios.get("/api/direct/ketiaodeng?mode=1");
+  const result3 = await axios.get("/api/zhiling/ketiaodeng?mode=1");
   ketiaodeng.value = result3.data;
-  const result4 = await axios.get("/api/direct/fengshan1?mode=1");
+  const result4 = await axios.get("/api/zhiling/fengshan1?mode=1");
   fengshan1.value = result4.data;
-  const result5 = await axios.get("/api/direct/fengshan2?mode=1");
+  const result5 = await axios.get("/api/zhiling/fengshan2?mode=1");
   fengshan2.value = result5.data;
-  const result6 = await axios.get("/api/direct/temperature1?mode=1");
+  const result6 = await axios.get("/api/zhiling/temperature1?mode=1");
   t1.value = result6.data;
   t1_min = result6.data.min;
   t1_max = result6.data.max;
-  const result7 = await axios.get("/api/direct/temperature2?mode=1");
+  const result7 = await axios.get("/api/zhiling/temperature2?mode=1");
   t2.value = result7.data;
   t2_min = result7.data.min;
   t2_max = result7.data.max;
-  const result8 = await axios.get("/api/direct/light_min?mode=1");
+  const result8 = await axios.get("/api/zhiling/light_min?mode=1");
   l.value = result8.data;
   l_min_min = result8.data.min;
   l_min_max = result8.data.max;
@@ -1045,38 +1015,38 @@ onMounted(async () => {
   console.log("l_min_max:" + l_min_max);
 
   // 前端字段呈现变量的赋值--全局
-  control_model_active_show.value = control_model.value.f_value[1].split(":")[0];
-  control_model_inactive_show.value = control_model.value.f_value[0].split(":")[0];
-  ketiaodeng_active_show.value = ketiaodeng.value.f_value[1].split(":")[0];
-  ketiaodeng_inactive_show.value = ketiaodeng.value.f_value[0].split(":")[0];
-  dianji_model_active_show.value = dianji_model.value.f_value[1].split(":")[0];
-  dianji_model_inactive_show.value = dianji_model.value.f_value[0].split(":")[0];
-  fengshan1_active_show.value = fengshan1.value.f_value[1].split(":")[0];
-  fengshan1_inactive_show.value = fengshan1.value.f_value[0].split(":")[0];
-  fengshan2_active_show.value = fengshan2.value.f_value[1].split(":")[0];
-  fengshan2_inactive_show.value = fengshan2.value.f_value[0].split(":")[0];
-  bujindianji_active_show.value = bujindianji.value.f_value[1].split(":")[0];
-  bujindianji_inactive_show.value = bujindianji.value.f_value[0].split(":")[0];
+  control_model_active_show.value = control_model.value.f_value.split("|")[1].split(":")[0];
+  control_model_inactive_show.value = control_model.value.f_value.split("|")[0].split(":")[0];
+  ketiaodeng_active_show.value = ketiaodeng.value.f_value.split("|")[0].split(":")[0];
+  ketiaodeng_inactive_show.value = ketiaodeng.value.f_value.split("|")[1].split(":")[0];
+  dianji_model_active_show.value = dianji_model.value.f_value.split("|")[0].split(":")[0];
+  dianji_model_inactive_show.value = dianji_model.value.f_value.split("|")[1].split(":")[0];
+  fengshan1_active_show.value = fengshan1.value.f_value.split("|")[0].split(":")[0];
+  fengshan1_inactive_show.value = fengshan1.value.f_value.split("|")[1].split(":")[0];
+  fengshan2_active_show.value = fengshan2.value.f_value.split("|")[0].split(":")[0];
+  fengshan2_inactive_show.value = fengshan2.value.f_value.split("|")[1].split(":")[0];
+  bujindianji_active_show.value = bujindianji.value.f_value.split("|")[0].split(":")[0];
+  bujindianji_inactive_show.value = bujindianji.value.f_value.split("|")[1].split(":")[0];
 
-  // const result00 = await axios.get("/api/direct/control?mode=0");
+  // const result00 = await axios.get("/api/zhiling/control?mode=0");
   // control_model1.value = result00.data;
-  // const result10 = await axios.get("/api/direct/dianji_model?mode=0");
+  // const result10 = await axios.get("/api/zhiling/dianji_model?mode=0");
   // dianji_model1.value = result10.data;
-  // const result20 = await axios.get("/api/direct/bujindianji?mode=0");
+  // const result20 = await axios.get("/api/zhiling/bujindianji?mode=0");
   // bujindianji1.value = result20.data;
-  // const result30 = await axios.get("/api/direct/ketiaodeng?mode=0");
+  // const result30 = await axios.get("/api/zhiling/ketiaodeng?mode=0");
   // ketiaodeng1.value = result30.data;
-  // const result40 = await axios.get("/api/direct/fengshan1?mode=0");
+  // const result40 = await axios.get("/api/zhiling/fengshan1?mode=0");
   // fengshan11.value = result40.data;
-  // const result50 = await axios.get("/api/direct/fengshan2?mode=0");
+  // const result50 = await axios.get("/api/zhiling/fengshan2?mode=0");
   // fengshan21.value = result50.data;
-  // const result60 = await axios.get("/api/direct/temperature1?mode=0");
+  // const result60 = await axios.get("/api/zhiling/temperature1?mode=0");
   // t1_device_min = result60.data.min;
   // t1_device_max = result60.data.max;
-  // const result70 = await axios.get("/api/direct/temperature2?mode=0");
+  // const result70 = await axios.get("/api/zhiling/temperature2?mode=0");
   // t2_device_min = result70.data.min;
   // t2_device_max = result70.data.max;
-  // const result80 = await axios.get("/api/direct/light_min?mode=0");
+  // const result80 = await axios.get("/api/zhiling/light_min?mode=0");
   // l_min_device_min = result80.data.min;
   // l_min_device_max = result80.data.max;
 
@@ -1135,8 +1105,7 @@ onMounted(async () => {
   // light_min_device_sign.value = Number(tempelate.data["17"]);
 
   //赋值完毕阶段完成全局指令的发送用于确保当前所有设备被正确启动 
-  if (control_sign.value === control_model.value.f_value[1].split(":")[0]) {
-    const result = await axios.get(`/api/zhiling/control?content=${control_model.value.f_value[1].split(":")[1]}&topic=${control_model.value.topic.split("|")[1]}&d_no=null`);
+  if (control_sign.value === control_model.value.f_value.split("|")[1].split(":")[0]) {
     //将伴随着的control_sign进行修改
     // 发送请求直接修改t_direct中的内容--由于自动手动仅由服务端控制故不需要和底层设备进行握手
     //启用其他控件
@@ -1146,8 +1115,7 @@ onMounted(async () => {
     fengshan1_bool.value = true;
     fengshan2_bool.value = true;
   }
-  else if (control_sign.value === control_model.value.f_value[0].split(":")[0]) {
-    const result = await axios.get(`/api/zhiling/control?content=${control_model.value.f_value[0].split(":")[1]}&topic=${control_model.value.topic.split("|")[0]}&d_no=null`);
+  else if (control_sign.value === control_model.value.f_value.split("|")[0].split(":")[0]) {
     // 发送请求直接修改t_direct中的内容--由于自动手动仅由服务端控制故不需要和底层设备进行握手
     //禁用其他控件--将空间相关的响应式变量置为空
     dianjimodel_bool.value = false;
@@ -1156,60 +1124,36 @@ onMounted(async () => {
     fengshan1_bool.value = false;
     fengshan2_bool.value = false;
   }
-  if (bujindianji_sign.value === bujindianji.value.f_value[1].split(":")[0]) {
-    const result = await axios.get(`/api/zhiling/bujindianji?content=${bujindianji.value.header.split("|")[0]}&topic=${bujindianji.value.topic}&d_no=null`);
-  }
-  else if (bujindianji_sign.value === bujindianji.value.f_value[0].split(":")[0]) {
-    const result = await axios.get(`/api/zhiling/bujindianji?content=${bujindianji.value.header.split("|")[1]}&topic=${bujindianji.value.topic}&d_no=null`);
-  }
-  if (ketiaodeng_sign.value === ketiaodeng.value.f_value[1].split(":")[0]) {
-    const result = await axios.get(`/api/zhiling/ketiaodeng?content=${ketiaodeng.value.header.split("|")[0]}&topic=${ketiaodeng.value.topic}&d_no=null`);
-  }
-  else if (ketiaodeng_sign.value === ketiaodeng.value.f_value[0]) {
-    const result = await axios.get(`/api/zhiling/ketiaodeng?content=${ketiaodeng.value.header.split("|")[1]}&topic=${ketiaodeng.value.topic}&d_no=null`);
-  }
-  if (fengshan1_sign.value === fengshan1.value.f_value[1].split(":")[0]) {
-    const result = await axios.get(`/api/zhiling/fengshan1?content=${fengshan1.value.header.split("|")[0]}&topic=${fengshan1.value.topic}&d_no=null`);
-  }
-  else if (fengshan1_sign.value === fengshan1.value.f_value[0]) {
-    const result = await axios.get(`/api/zhiling/fengshan1?content=${fengshan1.value.header.split("|")[1]}&topic=${fengshan1.value.topic}&d_no=null`);
-  }
-  if (fengshan2_sign.value === fengshan2.value.f_value[1].split(":")[0]) {
-    const result = await axios.get(`/api/zhiling/fengshan2?content=${fengshan2.value.header.split("|")[0]}&topic=${fengshan2.value.topic}&d_no=null`);
-  }
-  else if (fengshan2_sign.value === fengshan2.value.f_value[0]) {
-    const result = await axios.get(`/api/zhiling/fengshan2?content=${fengshan2.value.header.split("|")[1]}&topic=${fengshan2.value.topic}&d_no=null`);
-  }
-  if (dianjimodel_sign.value === dianji_model.value.f_value[0].split(":")[0]) {
-    const result = await axios.get(`/api/zhiling/dianji_model?content=${dianji_model.value.f_value[0].split(":")[1]}&topic=${dianji_model.value.topic}&d_no=null`);
-  }
-  else if (dianjimodel_sign.value === dianji_model.value.f_value[1].split(":")[0]) {
-    const result = await axios.get(`/api/zhiling/dianji_model?content=${dianji_model.value.f_value[1].split(":")[1]}&topic=${dianji_model.value.topic}&d_no=null`);
-  }
+  const result11 = await axios.get(`/api/zhiling/control?content=${control_sign.value}&d_no=null`);
+  const result22 = await axios.get(`/api/zhiling/bujindianji?content=${bujindianji_sign.value}&topic=${bujindianji.value.topic}&d_no=null`);
+  const result33 = await axios.get(`/api/zhiling/ketiaodeng?content=${ketiaodeng_sign.value}&topic=${ketiaodeng.value.topic}&d_no=null`);
+  const result44 = await axios.get(`/api/zhiling/fengshan1?content=${fengshan1_sign.value}&topic=${fengshan1.value.topic}&d_no=null`);
+  const result55 = await axios.get(`/api/zhiling/fengshan2?content=${fengshan2_sign.value}&topic=${fengshan2.value.topic}&d_no=null`);
+  const result66 = await axios.get(`/api/zhiling/dianji_model?content=${dianjimodel_sign.value}&topic=${dianji_model.value.topic}&d_no=null`);
 
   setInterval1 = setInterval(async () => {
     //获取到布局模板变量的值
     //全局实时变量
     const result = await axios.get("/api/direct?d_no=null");
     really_all.value = result.data;
-    const result6 = await axios.get("/api/direct/temperature1?mode=1");
+    const result6 = await axios.get("/api/zhiling/temperature1?mode=1");
     t1_min = result6.data.min;
     t1_max = result6.data.max;
-    const result7 = await axios.get("/api/direct/temperature2?mode=1");
+    const result7 = await axios.get("/api/zhiling/temperature2?mode=1");
     t2_min = result7.data.min;
     t2_max = result7.data.max;
-    const result8 = await axios.get("/api/direct/light_min?mode=1");
+    const result8 = await axios.get("/api/zhiling/light_min?mode=1");
     l_min_min = result8.data.min;
     l_min_max = result8.data.max;
 
     // 局部实时变量 
-    // const result60 = await axios.get("/api/direct/temperature1?mode=0");
+    // const result60 = await axios.get("/api/zhiling/temperature1?mode=0");
     // t1_device_min = result60.data.min;
     // t1_device_max = result60.data.max;
-    // const result70 = await axios.get("/api/direct/temperature2?mode=0");
+    // const result70 = await axios.get("/api/zhiling/temperature2?mode=0");
     // t2_device_min = result70.data.min;
     // t2_device_max = result70.data.max;
-    // const result80 = await axios.get("/api/direct/light_min?mode=0");
+    // const result80 = await axios.get("/api/zhiling/light_min?mode=0");
     // l_min_device_min = result80.data.min;
     // l_min_device_max = result80.data.max;
 

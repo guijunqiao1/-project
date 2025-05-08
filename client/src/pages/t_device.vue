@@ -1,10 +1,10 @@
 <template>
-  <div class="content1" v-show="Pinia.device_sign">
+  <div class="content1" v-show="Pinia.Action_sign">
     <!-- 上半部分 -->
     <div class="top_part">
 
       <!-- 设备查询下拉框--动态对a_length获取用于进行当前应当展现内容的判断 -->
-      <el-dropdown v-show="Pinia.device_sign">
+      <el-dropdown v-show="Pinia.action_sign">
         <!-- 当前框只在保底一个的情况下才出现 -->
         <el-button type="primary" v-show="a_length > 1">
           设备<el-icon class="el-icon--right"><arrow-down /></el-icon>
@@ -22,9 +22,9 @@
         </template>
       </el-dropdown>
       <!-- 当检查得到的数组的长度为1的时候进行当前的div的呈现 -->
-      <div class="only" style="border-radius: 5px;background-color: #409eff;" v-if="a_length <= 1">
+      <div class="only" style="border-radius: 5px;background-color: #409eff;" v-if="a_length <= 1"
+        v-show="Pinia.action_sign">
         查看设备编号为{{ signzhi }}的数据统计</div>
-
     </div>
 
     <!-- 表格部分 -->
@@ -33,7 +33,7 @@
         <thead>
           <tr>
             <th>设备名称</th>
-            <th v-show="Pinia.device_sign">设备编号</th>
+            <th v-show="Pinia.action">设备编号</th>
             <th>注释</th>
             <th>创建时间</th>
           </tr>
@@ -42,7 +42,7 @@
           <!-- 遍历的是设备数组的内容 -->
           <tr v-for="item in device_array" :key="item.id">
             <td>{{ item[2] }}</td>
-            <td v-show="Pinia.device_sign">{{ item[0] }}</td>
+            <td v-show="Pinia.action_sign">{{ item[0] }}</td>
             <td>{{ item[1] }}</td>
             <td>{{ moment(item[3]).format('YYYY-MM-DD HH:mm:ss') }}</td>
           </tr>

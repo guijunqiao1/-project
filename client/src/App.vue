@@ -41,6 +41,9 @@
             <el-menu-item index="1-5">
               <RouterLink to="/t_Control" @click="add2($event)"> 指令控制台</RouterLink>
             </el-menu-item>
+            <el-menu-item index="1-6">
+              <RouterLink to="/experience" @click="add2($event)"> ex</RouterLink>
+            </el-menu-item>
           </el-menu>
         </el-col>
       </el-row>

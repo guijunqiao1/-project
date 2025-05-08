@@ -22,10 +22,6 @@ export let active = false;
 // let zhiling_beifen_array = [[2021,[]]];
 let zhiling_beifen_array = [];
 
-
-//定义备份标记变量，用于标记备份数组什么时候开始进行存储--即将初始化发送的指令进行忽略
-let all_sign = 0;
-
 //设备存储
 //指令备份数组的元素格式为：
 // 设备编号,【主题，数据({payload,qos})，该设备所属的指令的类别】
@@ -36,7 +32,7 @@ let all_sign = 0;
 
 export const client = mqtt.connect('mqtt://127.0.0.1',{
   clientId:"client_control",//唯一标识符
-});
+}); 
 
 //定义延时函数
 function delay(ms) {
@@ -53,22 +49,22 @@ function getFormattedDate() {
   const seconds = String(now.getSeconds()).padStart(2, '0');
   return `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`;
 }
-
+ 
 // 心跳检测器
 // 制作一个定时器用于定期向设备层订阅的主题中发送消息，并且设备层在接受到消息之后则响应相同的消息到应用层，用于检测设备层和应用层是不是直接的连接
-setInterval(()=>{
-  console.log("心跳正常发送");
-  //首先对整个beifen数组进行缓存，并且根据其中的首元素的个数进行对应的主题的发送
-  zhiling_beifen_array.forEach((item,index)=>{
-    //在当前的item(某个不同的设备)中完成心跳的发送的操作并且将此时对应上的active标记
-    client.publish(`direct`,JSON.stringify({heartTest_client:"start"}),{qos:1});//多设备情况下考虑的文本内容得添加上设备的具体编号
-    //将当前心跳设备置为false
-    // 多设备情况
-    // active_array[index][1] = false;
-    // 单设备
-    active = false;
-  })
-},5000);//每5s进行一次心跳的检测
+// setInterval(()=>{
+//   console.log("心跳正常发送");
+//   //首先对整个beifen数组进行缓存，并且根据其中的首元素的个数进行对应的主题的发送
+//   zhiling_beifen_array.forEach((item,index)=>{
+//     //在当前的item(某个不同的设备)中完成心跳的发送的操作并且将此时对应上的active标记
+//     client.publish(`direct`,JSON.stringify({heartTest_client:"start"}),{qos:1});//多设备情况下考虑的文本内容得添加上设备的具体编号
+//     //将当前心跳设备置为false
+//     // 多设备情况
+//     // active_array[index][1] = false;
+//     // 单设备
+//     active = false;
+//   })
+// },5000);//每5s进行一次心跳的检测
 
 
 
@@ -122,7 +118,6 @@ async function republish(){
 
 //定义备份函数 
 export function beifen(value1,value2){//一号位参数用于确定发送的指令类对应的编号、二号位参数用于传递给具体的报文信息
-  all_sign++;
   //首先进行指令发送
   client.publish(...value2);
   client.publish(...value2);
@@ -134,7 +129,7 @@ export function beifen(value1,value2){//一号位参数用于确定发送的指�
   //   console.log("当前为离线状态");
   // }
   // 单设备
-  if(active===false&&all_sign>6){
+  if(active===false){
     zhiling_beifen_array.push(value2);
     console.log("zhiling_beifen_array.length:"+zhiling_beifen_array.length);
   }

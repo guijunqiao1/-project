@@ -1,16 +1,16 @@
 <template>
   <div class="container">
 
-    <h2 class="h2_device">传感器设备变化情况图</h2>
+    <h2 class="h2_device" v-show="Pinia.Device_sign">传感器设备变化情况图</h2>
 
     <!-- 设备表的时间选择器 -->
-    <div class="block1 block">
+    <div class="block1 block" v-show="Pinia.Device_sign">
       <el-date-picker v-model="value1" type="datetimerange" start-placeholder="Start Date" end-placeholder="End Date"
         :default-time="defaultTime1" />
     </div>
 
     <!-- 进行范围内容的设备的显示 -->
-    <div id="timeTotime1" v-if="Pinia.device_sign">
+    <div id="timeTotime1" v-if="Pinia.device_sign && Pinia.Device_sign">
       <el-dropdown v-if="a1_length > 1 && date_Array[0][0]">
         <!-- 当前框只在保底一个的情况下才出现 -->
         <el-button type="primary">
@@ -35,10 +35,10 @@
 
 
     <!-- 用于表格信息提示的标签 -->
-    <h2 class="h1">设备表格内容</h2>
+    <h2 class="h1" v-show="Pinia.Device_sign">设备表格内容</h2>
 
     <!-- 当激活了设备列表的时候 -->
-    <table class="device_table">
+    <table class="device_table" v-show="Pinia.Device_sign">
       <thead v-if="yingshe_array && unit_array">
         <tr>
           <!-- 直接考虑是否为多设备的情况 -->
@@ -63,7 +63,7 @@
     </table>
 
     <!-- 分页栏部分 -->
-    <div class="pagination-container">
+    <div class="pagination-container" v-show="Pinia.Device_sign">
       <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :total="Number(total1)"
         layout=" prev ,pager, next" />
       <!-- 上述前者用于响应式提供当前选中的页数；第二者用于设置固定的每页中应当呈现的数据；第三者用于获取到总数，则element标签会自动进行计算用于将当前应当呈现的页数；第四者为分页标签的顺序设置；最后者表示设置当前的分页的标签的整体的大小为默认大小 -->
@@ -71,28 +71,30 @@
 
 
     <!-- 设备图像 -->
-    <div class="change1" @click="change($event)">
+    <div class="change1" @click="change($event)" v-show="Pinia.Device_sign">
       <button id="zhexian" class="active">折线图(默认)</button>
       <button id="zhuzhuang">柱状图</button>
     </div>
 
 
-    <ECharts :option="chartOption" style="width: 600px; height: 400px; display:block;" class="zhexian" />
-    <ECharts :option="chartOption1" style="width:600px; height:400px;display:none;" class="zhuzhuang" />
+    <ECharts :option="chartOption" style="width: 600px; height: 400px; display:block;" class="zhexian"
+      v-show="Pinia.Device_sign" />
+    <ECharts :option="chartOption1" style="width:600px; height:400px;display:none;" class="zhuzhuang"
+      v-show="Pinia.Device_sign" />
 
     <!-- 行为相关内容 -->
 
-    <h2 v-if="Pinia.action_sign" class="h2_action">传感器行为变化情况图</h2>
+    <h2 v-if="Pinia.Action_sign" class="h2_action">传感器行为变化情况图</h2>
 
 
     <!-- 行为表的时间选择器 -->
-    <div class="block2 block" v-if="Pinia.action_sign">
+    <div class="block2 block" v-if="Pinia.Action_sign">
       <el-date-picker v-model="value2" type="datetimerange" start-placeholder="Start Date" end-placeholder="End Date"
         :default-time="defaultTime2" />
     </div>
 
     <!-- 行为数据的列表选择 -->
-    <div id="timeTotime2" v-show="Pinia.device_sign && Pinia.action_sign">
+    <div id="timeTotime2" v-show="Pinia.Action_sign && Pinia.action_sign">
       <el-dropdown v-show="b1_length > 1">
         <!-- 当前框只在保底一个的情况下才出现 -->
         <el-button type="primary">
@@ -116,13 +118,13 @@
 
 
     <!-- 用于行为表格展示的提示的标签 -->
-    <h2 class="h2" v-if="Pinia.action_sign">行为表格内容</h2>
+    <h2 class="h2" v-if="Pinia.Action_sign">行为表格内容</h2>
 
     <!-- 行为表格 -->
-    <table class="action_table" v-show="Pinia.device_sign">
+    <table class="action_table" v-show="Pinia.Action_sign">
       <thead v-if="yingshe_action && unit_action_array">
         <tr>
-          <th v-if="Pinia.device_sign">设备编号</th>
+          <th v-if="Pinia.action_sign">设备编号</th>
           <th>{{ yingshe_action[0].field1 }} ({{ unit_action_array[0] }})</th>
           <th>{{ yingshe_action[1].field2 }} ({{ unit_action_array[1] }})</th>
           <th>{{ yingshe_action[2].field3 }} ({{ unit_action_array[2] }})</th>
@@ -132,7 +134,7 @@
       </thead>
       <tbody>
         <tr v-for="item in device_array_action_page_array">
-          <td v-if="device_array_action_page_array[0][0] && Pinia.device_sign">{{ item[0] }}</td>
+          <td v-if="device_array_action_page_array[0][0] && Pinia.action_sign">{{ item[0] }}</td>
           <td>{{ item[1] }}</td>
           <td>{{ item[2] }}</td>
           <td>{{ item[3] }}</td>
@@ -142,21 +144,21 @@
       </tbody>
     </table>
     <!-- 分页栏部分 -->
-    <div class="pagination-container1" v-if="Pinia.action_sign">
+    <div class="pagination-container1" v-if="Pinia.Action_sign">
       <el-pagination v-model:current-page="currentPage1" v-model:page-size="pageSize" :total="Number(total2)"
         layout=" prev ,pager, next" />
       <!-- 上述前者用于响应式提供当前选中的页数；第二者用于设置固定的每页中应当呈现的数据；第三者用于获取到总数，则element标签会自动进行计算用于将当前应当呈现的页数；第四者为分页标签的顺序设置；最后者表示设置当前的分页的标签的整体的大小为默认大小 -->
     </div>
 
     <!-- 设备行为图像 -->
-    <div class="change2" @click="change0($event)" v-if="Pinia.action_sign">
+    <div class="change2" @click="change0($event)" v-if="Pinia.Action_sign">
       <button id="zhexian1" class="active">折线图(默认)</button>
       <button id="zhuzhuang1">柱状图</button>
     </div>
     <ECharts :option="chartOption0" style="width: 600px; height: 400px; display:block;" class="zhexian1"
-      v-show="Pinia.action_sign" />
+      v-show="Pinia.Action_sign" />
     <ECharts :option="chartOption11" style="width:600px; height:400px; display:none;" class="zhuzhuang1"
-      v-show="Pinia.action_sign" />
+      v-show="Pinia.Action_sign" />
   </div>
 </template>
 

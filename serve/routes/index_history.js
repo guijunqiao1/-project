@@ -283,7 +283,7 @@ Router4.get("/History_count", async (req, res) => {
         AND c_time BETWEEN "${formattedStart}" AND "${formattedEnd}"
       `);
       // 直接返回数组长度
-      res.send(""+rows.length);
+      res.send(""+rows[0].total.toString());
     }
   }
   catch{

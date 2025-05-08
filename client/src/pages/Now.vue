@@ -6,7 +6,7 @@
 
     <!-- 设备信息  -->
     <div id="latestData">
-      <div class="container22" v-show="Pinia.device_sign">
+      <div class="container22" v-show="Pinia.device_sign && Pinia.Device_sign">
         <el-dropdown>
           <!-- 当前框只在保底一个的情况下才出现 -->
           <el-button type="primary" v-show="a_length > 1 && date_Array[0][0]">
@@ -28,10 +28,11 @@
       </div>
 
       <!-- 最新信息的提示 -->
-      <h2 class="newest_device" style="margin-top:70px;">用于展示最新记录的表格</h2>
+      <h2 class="newest_device" v-show="Pinia.Device_sign" style="margin-top:70px;">用于展示最新记录的表格</h2>
       <!-- 下方执行v-if语句用于优先对nowArray的值进行动态的判断之后在进行渲染(防止在控制台报错出现内容还没获取到就报错的问题，
       而之所以会报错是因为ref数据的“开始”渲染发生在“所有异步”处理完成之后) -->
-      <table v-if="nowArray && nowArray[1] && nowArray[1].length > 0 && c_length > 0" class="table_device">
+      <table v-if="nowArray && nowArray[1] && nowArray[1].length > 0 && c_length > 0 && Pinia.Device_sign"
+        class="table_device">
         <thead>
           <tr>
             <th v-show="nowArray[0] && Pinia.device_sign">设备编号</th>
@@ -55,22 +56,22 @@
 
     <!-- 图像切换按钮--使用事件委托完成change事件的执行 -->
     <!-- 设备图像 -->
-    <div class="change1" @click="change($event)" v-if="a_length > 0">
+    <div class="change1" @click="change($event)" v-if="a_length > 0 && Pinia.Device_sign">
       <button id="zhexian" class="active">折线图(默认)</button>
       <button id="zhuzhuang">柱状图</button>
     </div>
 
-    <ECharts :option="chartOption" style="width:600px; height: 400px;" v-show="a_length > 0 && zhexian_device"
-      class="zhexian" />
+    <ECharts :option="chartOption" style="width:600px; height: 400px;"
+      v-show="a_length > 0 && zhexian_device && Pinia.Device_sign" class="zhexian" />
     <ECharts :option="chartOption1" style="width:600px; height:400px;" class="zhuzhuang"
-      v-show="a_length > 0 && !zhexian_device" />
+      v-show="a_length > 0 && !zhexian_device && Pinia.Device_sign" />
 
     <!-- 行为相关内容 -->
 
-    <h2 style="margin-top:150px;" v-show="Pinia.device_sign">不同传感器设备的最近5分钟的行为数据记录</h2>
+    <h2 style="margin-top:150px;" v-show="Pinia.action_sign && Pinia.Action_sign">不同传感器设备的最近5分钟的行为数据记录</h2>
 
     <!-- 行为信息 -->
-    <div id="latestData" v-show="Pinia.device_sign && Pinia.action_sign">
+    <div id="latestData" v-show="Pinia.action_sign && Pinia.Action_sign">
       <div class="container222">
         <el-dropdown>
           <!-- 当前框只在保底一个的情况下才出现 -->
@@ -121,14 +122,14 @@
     </div>
 
     <!-- 图像切换按钮--使用事件委托完成change事件的执行 -->
-    <div class="change" @click="change0($event)" v-if="b_length > 0 && Pinia.action_sign">
+    <div class="change" @click="change0($event)" v-if="b_length > 0 && Pinia.Action_sign">
       <button id="zhexian1" class="active">折线图(默认)</button>
       <button id="zhuzhuang1">柱状图</button>
     </div>
     <ECharts :option="chartOption0" style="width: 600px; height: 400px;" class="zhexian1"
-      v-show="b_length > 0 && zhexian_action && Pinia.action_sign" />
+      v-show="b_length > 0 && zhexian_action && Pinia.Action_sign" />
     <ECharts :option="chartOption11" style="width: 600px; height:400px;" class="zhuzhuang1"
-      v-show="b_length > 0 && !zhexian_action && Pinia.action_sign" />
+      v-show="b_length > 0 && !zhexian_action && Pinia.Action_sign" />
   </div>
 </template>
 
@@ -1193,7 +1194,7 @@ onMounted(async () => {
     b_length.value = action_Array.value.length;
     nowArray1.value = action_Array.value[0];
     tem_array1.value = [, []];
-    if(Pinia.action_sign){
+    if (Pinia.action_sign) {
       tem_array1.value[0] = nowArray1.value[0];
       nowArray1.value[1].forEach((item, index) => {
         item[4] = moment(item[4]).format('YYYY-MM-DD HH:mm:ss');
@@ -1607,7 +1608,7 @@ onMounted(async () => {
       }
       console.log("桂桂桂桂桂桂桂桂桂桂桂桂桂桂桂桂桂桂桂桂：" + time_array);
 
-      if(Pinia.action_sign){
+      if (Pinia.action_sign) {
         y_zhi11(OneMinute(time_array));
       }
 
@@ -1657,7 +1658,7 @@ onMounted(async () => {
         }
         console.log("桂桂桂桂桂桂桂桂桂桂桂桂桂桂桂桂桂桂桂桂：" + time_array);
 
-        if(Pinia.action_sign){
+        if (Pinia.action_sign) {
           y_zhi11(OneMinute(time_array));
         }
       }, 5000);
